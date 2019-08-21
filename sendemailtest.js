@@ -48,7 +48,7 @@ var day15Date = new Date (d - 15*86400*1000);
 function send_day_1_emails(){
 
     console.log("Inside the day1 function");
-
+    console.log(day1Date);
     PA.find({"createdate":{"$gte":day1Date}}, function(err, user) {
 
 	//console.log("Number of users: ", user.length);
