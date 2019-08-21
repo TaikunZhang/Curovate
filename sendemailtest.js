@@ -51,7 +51,7 @@ function send_day_1_emails(){
 
     PA.find({"createdate":{"$gte":day1Date}}, function(err, user) {
 
-	console.log("Number of users: ", user.length);
+	//console.log("Number of users: ", user.length);
 
 
         if (err){
@@ -85,7 +85,7 @@ function send_day_3_emails(){
 
     PA.find({"createdate":{"$gte":day3Date,"$lt":day2Date}}, function(err, user) {
 
-	console.log("Number of users: ", user.length);
+	//console.log("Number of users: ", user.length);
 
 
         if (err){
@@ -119,7 +119,7 @@ function send_day_7_emails(){
 
     PA.find({"createdate":{"$gte":day7Date,"$lt":day6Date}}, function(err, user) {
 
-	console.log("Number of users: ", user.length);
+	//console.log("Number of users: ", user.length);
 
 
         if (err){
@@ -153,7 +153,7 @@ function send_day_15_emails(){
 
     PA.find({"createdate":{"$gte":day15Date,"$lt":day14Date}}, function(err, user) {
 
-	console.log("Number of users: ", user.length);
+	//console.log("Number of users: ", user.length);
 
 
         if (err){
