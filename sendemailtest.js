@@ -55,7 +55,7 @@ function send_day_1_emails(){
 
 
         if (err){
-            console.log("Cannot find the users");
+            console.log(err);
         }else{
 
             console.log("Number of Users", user.length);
