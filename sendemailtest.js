@@ -72,7 +72,7 @@ function send_day_1_emails(){
                     "o:tag" : ['Day1emailA'],
                 };
                 mg.messages().send(data, function (error, body) {
-                    console.log(body);
+                   // console.log(body);
                 });
             }
         }
@@ -106,7 +106,7 @@ function send_day_3_emails(){
                     "o:tag" : ['Day3emailA'],
                 };
                 mg.messages().send(data, function (error, body) {
-                    console.log(body);
+                    //console.log(body);
                 });
             }
         }
@@ -140,7 +140,7 @@ function send_day_7_emails(){
                     "o:tag" : ['Day7emailA'],
                 };
                 mg.messages().send(data, function (error, body) {
-                    console.log(body);
+                    //console.log(body);
                 });
             }
         }
@@ -174,7 +174,7 @@ function send_day_15_emails(){
                     "o:tag" : ['Day15emailA'],
                 };
                 mg.messages().send(data, function (error, body) {
-                    console.log(body);
+                    //console.log(body);
                 });
             }
         }
