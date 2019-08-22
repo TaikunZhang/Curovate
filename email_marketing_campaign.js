@@ -190,3 +190,4 @@ send_day_1_emails();
 send_day_3_emails();
 send_day_7_emails();
 send_day_15_emails();
+process.exit(0);
