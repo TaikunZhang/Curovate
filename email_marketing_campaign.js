@@ -183,11 +183,11 @@ var day15Date = new Date (d - 15*86400*1000);
     });
 //}
 
-//function disconnect(){
-    //mongoose.disconnect();
-//}
+function disconnect(){
+    mongoose.disconnect();
+}
 //send_day_1_emails();
-//end_day_3_emails();
+//send_day_3_emails();
 //send_day_7_emails();
 //send_day_15_emails();
-process.exit
+process.exit();
