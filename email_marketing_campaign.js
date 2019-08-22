@@ -44,10 +44,72 @@ var day7Date = new Date (d - 7*86400*1000);
 var day14Date = new Date (d - 14*86400*1000);
 var day15Date = new Date (d - 15*86400*1000);
 
-//console.log(d,day1Date,day3Date,day6Date,day7Date,day14Date,day15Date);
+//create content for emails
+//day1
+function getDay1(){
+    const data = {
+        from: 'Curovate <info@curovate.com>',
+        to: 'taikunzhang581@gmail.com',
+        subject: "Welcome to Curovate " + user[i].firstname + "! Get started with your ACL recovery today by completing your exercises!",
+        template: 'day1email',
+        "o:tracking": 'yes',
+        "o:tag" : ['Day1emailA'],
+    };
+    return data;
+}
+//day3
+function getDay3(){
+    const data = {
+        from: 'Curovate <info@curovate.com>',
+        to: 'taikunzhang581@gmail.com',
+        subject: user[i].firstname + ", take advantage of Curovate’s ACL recovery tools! Watch video guided exercises, measure your knee extension, and track your progress during your ACL recovery",
+        template: 'day3email',
+        "o:tracking": 'yes',
+        "o:tag" : ['Day3emailA'],
+    };
+    return data;
+}
+//day7
+function getDay7(){
+    var data = {
+        from: 'Curovate <info@curovate.com>',
+        to: 'taikunzhang581@gmail.com',
+        subject: user[i].firstname + ", join the Curovate family and complete your 6 month ACL recovery journey!",
+        template: 'day7email',
+        "o:tracking": 'yes',
+        "o:tag" : ['Day7emailA'],
+    };
+    return data;
+}
+//day15
+function getDay15(){
+    const data = {
+        from: 'Curovate <info@curovate.com>',
+        to: 'taikunzhang581@gmail.com',
+        subject: user[i].firstname + "! Use these tips and resources to stay engaged with your ACL recovery",
+        template: 'day15email',
+        "o:tracking": 'yes',
+        "o:tag" : ['Day15emailA'],
+    };
+    return data;
+}
 
 //sends Day1Emails to users who have signed up within a day
 //function send_day_1_emails(){
+function main(){
+
+    //connect to local physiophriend database
+    mongoose.connect(mongoose_uri, {
+    user: '',
+    pass: ''
+    });
+
+    //check connection
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function callback () {
+        console.log('Connected to MongoDB');
+    });
 
     //console.log("Inside the day1 function");
     //console.log(day1Date);
@@ -182,7 +244,8 @@ var day15Date = new Date (d - 15*86400*1000);
         }
     });
 //}
-
+}
+main();
 function disconnect(){
     mongoose.disconnect();
 }
@@ -190,4 +253,4 @@ function disconnect(){
 //send_day_3_emails();
 //send_day_7_emails();
 //send_day_15_emails();
-process.exit();
+process.exit(0);
