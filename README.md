@@ -1,1 +1,1 @@
-# Curovate
+# Curovate - email-marketing
