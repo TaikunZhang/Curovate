@@ -184,7 +184,7 @@ var day15Date = new Date (d - 15*86400*1000);
 //}
 
 //function disconnect(){
-    mongoose.disconnect();
+    //mongoose.disconnect();
 //}
 //send_day_1_emails();
 //end_day_3_emails();
