@@ -44,6 +44,8 @@ var day7Date = new Date (d - 7*86400*1000);
 var day14Date = new Date (d - 14*86400*1000);
 var day15Date = new Date (d - 15*86400*1000);
 
+console.log(d,day1Date,day3Date,day6Date,day7Date,day14Date,day15Date);
+
 //sends Day1Emails to users who have signed up within a day
 function send_day_1_emails(){
 
