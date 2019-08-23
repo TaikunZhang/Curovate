@@ -92,13 +92,13 @@ db.once('open', async function callback () {
             console.log(err);
         }
         try{
-            var day7 = await send_emails(0,day6Date,day7Date);
+            var day7 = await send_emails(2,day6Date,day7Date);
             console.log(day7);
         }catch(err) {
             console.log(err);
         }
         try{
-            var day15 = await send_emails(0,day14Date,day15Date);
+            var day15 = await send_emails(3,day14Date,day15Date);
             console.log(day15);
         }catch(err) {
             console.log(err);
@@ -115,8 +115,17 @@ async function send_emails(dayNum, start_date, end_date){
     
     return new Promise((resolve, reject) => {
         PA.find({"createdate":{"$gte":end_date,"$lt":start_date}}, function(err, users) {
+            
+            var number;
 
-	        console.log("Sending day" + dayNum + " emails.");
+            if (dayNum == 0)
+            console.log("Sending day 1 emails.");
+            if (dayNum == 1)
+            console.log("Sending day 3 emails.");
+            if (dayNum == 2)
+            console.log("Sending day 7 emails.");
+            if (dayNum == 3)
+            console.log("Sending day 15 emails.");
 
 
             if (err){
@@ -141,10 +150,11 @@ async function send_emails(dayNum, start_date, end_date){
                     else if (dayNum == 3){
                         email.subject == users[i].firstname + "! Use these tips and resources to stay engaged with your ACL recovery";
                     }
-                };
+
                     mg.messages().send(email, function (error, body) {
-                    // console.log(body);
-                    });
+                        // console.log(body);
+                        });
+                };
             }
 
         resolve("done");
