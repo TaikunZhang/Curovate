@@ -24,10 +24,12 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
     console.log('Connected to MongoDB');
-    send_day_1_emails();
-send_day_3_emails();
-send_day_7_emails();
-send_day_15_emails();
+    let day1 = await send_day_1_emails();
+    console.log(day1);
+//send_day_3_emails();
+//send_day_7_emails();
+//send_day_15_emails();
+process.exit(0);
 });
 
 //create date paramters for queries
@@ -50,17 +52,18 @@ var day15Date = new Date (d - 15*86400*1000);
 
 
 //sends Day1Emails to users who have signed up within a day
-function send_day_1_emails(){
+async function send_day_1_emails(){
 
     //console.log("Inside the day1 function");
     //console.log(day1Date);
+    let promise = new Promise((resolve, reject) => {
     PA.find({"createdate":{"$gte":day1Date}}, function(err, user) {
 
 	console.log("Sending day1 emails");
 
 
         if (err){
-            console.log(err);
+            reject(err);
         }else{
 
             console.log("Number of Users", user.length);
@@ -80,8 +83,10 @@ function send_day_1_emails(){
                    // console.log(body);
                 });
             }
+            resolve("done");
         }
     });
+});
 }
 //sends Day3Emails to users who have signed up within 3 days
 function send_day_3_emails(){
@@ -190,4 +195,4 @@ function disconnect(){
     mongoose.disconnect();
 }
 
-process.exit(0);
+//process.exit(0);
