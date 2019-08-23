@@ -152,7 +152,7 @@ async function send_emails(dayNum, start_date, end_date){
                     }
 
                     mg.messages().send(email);
-                };
+                }
             }
 
         resolve("done");
