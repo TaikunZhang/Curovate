@@ -113,7 +113,7 @@ async function send_emails(dayNum, start_date, end_date){
 
     console.log("Inside the send email function");
     
-    let promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         PA.find({"createdate":{"$gte":end_date,"$lt":start_date}}, function(err, users) {
 
 	        console.log("Sending day" + dayNum + " emails.");
