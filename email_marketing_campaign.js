@@ -151,9 +151,7 @@ async function send_emails(dayNum, start_date, end_date){
                         email.subject == users[i].firstname + "! Use these tips and resources to stay engaged with your ACL recovery";
                     }
 
-                    mg.messages().send(email, function (error, body) {
-                         console.log("send");
-                        });
+                    mg.messages().send(email);
                 };
             }
 
