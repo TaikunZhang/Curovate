@@ -20,17 +20,23 @@ mongoose.connect(mongoose_uri, {
 });
 
 //check connection
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-    console.log('Connected to MongoDB');
-    let day1 = await send_day_1_emails();
-    console.log(day1);
-//send_day_3_emails();
-//send_day_7_emails();
-//send_day_15_emails();
-process.exit(0);
-});
+	var db = mongoose.connection;
+	db.on('error', console.error.bind(console, 'connection error:'));
+	db.once('open', async function callback () {
+	    console.log('Connected to MongoDB');
+	try {
+	    var day1 = await send_day_1_emails();
+		console.log("success");
+	    console.log(day1);
+	} catch(err) {
+		console.log("error");
+		console.log(err);
+	}
+	//send_day_3_emails();
+	//send_day_7_emails();
+	//send_day_15_emails();
+		process.exit(0);
+	});
 
 //create date paramters for queries
 
@@ -56,8 +62,8 @@ async function send_day_1_emails(){
 
     //console.log("Inside the day1 function");
     //console.log(day1Date);
-    let promise = new Promise((resolve, reject) => {
-    PA.find({"createdate":{"$gte":day1Date}}, function(err, user) {
+    return new Promise((resolve, reject) => {
+    PA.find({"createdate":{"$gte":day1Date}}, async function(err, user) {
 
 	console.log("Sending day1 emails");
 
@@ -79,9 +85,7 @@ async function send_day_1_emails(){
                     "o:tracking": 'yes',
                     "o:tag" : ['Day1emailA'],
                 };
-                mg.messages().send(data, function (error, body) {
-                   // console.log(body);
-                });
+                var body = await mg.messages().send(data);
             }
             resolve("done");
         }
