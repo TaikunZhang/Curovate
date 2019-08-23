@@ -24,6 +24,12 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
     console.log('Connected to MongoDB');
+    let day1 = await send_day_1_emails();
+    console.log(day1)
+//send_day_3_emails();
+//send_day_7_emails();
+//send_day_15_emails();
+process.exit(0);
 });
 
 //create date paramters for queries
@@ -44,20 +50,20 @@ var day7Date = new Date (d - 7*86400*1000);
 var day14Date = new Date (d - 14*86400*1000);
 var day15Date = new Date (d - 15*86400*1000);
 
-//console.log(d,day1Date,day3Date,day6Date,day7Date,day14Date,day15Date);
 
 //sends Day1Emails to users who have signed up within a day
-function send_day_1_emails(){
+async function send_day_1_emails(){
 
-    console.log("Inside the day1 function");
-    console.log(day1Date);
+    //console.log("Inside the day1 function");
+    //console.log(day1Date);
+    let promise = new Promise((resolve, reject) => {
     PA.find({"createdate":{"$gte":day1Date}}, function(err, user) {
 
-	//console.log("Number of users: ", user.length);
+	console.log("Sending day1 emails");
 
 
         if (err){
-            console.log(err);
+            reject(err);
         }else{
 
             console.log("Number of Users", user.length);
@@ -77,17 +83,19 @@ function send_day_1_emails(){
                    // console.log(body);
                 });
             }
+            resolve("done");
         }
     });
+});
 }
 //sends Day3Emails to users who have signed up within 3 days
 function send_day_3_emails(){
 
-    console.log("Inside the day3 function");
+    //console.log("Inside the day3 function");
 
     PA.find({"createdate":{"$gte":day3Date,"$lt":day2Date}}, function(err, user) {
 
-	//console.log("Number of users: ", user.length);
+	console.log("Sending day3 emails");
 
 
         if (err){
@@ -117,11 +125,11 @@ function send_day_3_emails(){
 //sends Day7mails to users who have signed up within 7 days
 function send_day_7_emails(){
 
-    console.log("Inside the day7 function");
+   // console.log("Inside the day7 function");
 
     PA.find({"createdate":{"$gte":day7Date,"$lt":day6Date}}, function(err, user) {
 
-	//console.log("Number of users: ", user.length);
+	console.log("Sending day7 emails");
 
 
         if (err){
@@ -151,11 +159,11 @@ function send_day_7_emails(){
 //sends Day3Emails to users who have signed up within 15 days
 function send_day_15_emails(){
 
-    console.log("Inside the day 15 function");
+    //console.log("Inside the day 15 function");
 
     PA.find({"createdate":{"$gte":day15Date,"$lt":day14Date}}, function(err, user) {
 
-	//console.log("Number of users: ", user.length);
+	console.log("Sending day15 emails");
 
 
         if (err){
@@ -186,8 +194,5 @@ function send_day_15_emails(){
 function disconnect(){
     mongoose.disconnect();
 }
-send_day_1_emails();
-//send_day_3_emails();
-//send_day_7_emails();
-//send_day_15_emails();
-disconnect();
+
+//process.exit(0);
