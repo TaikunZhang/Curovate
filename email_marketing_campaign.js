@@ -1,3 +1,4 @@
+
 //get required packages
 var mongoose  = require("mongoose");
 var MongoClient = require('mongodb').MongoClient;
@@ -18,7 +19,7 @@ var PA            = require(path.join(__dirname, "PA.js"));
 var messages = [
     {
         from: 'Curovate <info@curovate.com>',
-        to: 'taikunzhang581@gmail.com',
+        to: '',
         subject: '',
         template: 'day1email',
         "o:tracking": 'yes',
@@ -26,7 +27,7 @@ var messages = [
     },
     {
         from: 'Curovate <info@curovate.com>',
-        to: 'taikunzhang581@gmail.com',
+        to: '',
         subject: '',
         template: 'day3email',
         "o:tracking": 'yes',
@@ -34,7 +35,7 @@ var messages = [
     },
     {
         from: 'Curovate <info@curovate.com>',
-        to: 'taikunzhang581@gmail.com',
+        to: '',
         subject: '',
         template: 'day7email',
         "o:tracking": 'yes',
@@ -42,14 +43,14 @@ var messages = [
     },
     {
         from: 'Curovate <info@curovate.com>',
-        to: 'taikunzhang581@gmail.com',
+        to: '',
         subject: '',
         template: 'day15email',
         "o:tracking": 'yes',
         "o:tag" : ['Day15emailA'], 
     },
 
-]
+];
 //dates for the Day1Email
 var d = new Date();
 var day1Date = new Date (d - 86400*1000);
@@ -139,17 +140,19 @@ async function send_emails(dayNum, start_date, end_date){
                 for (i=0; i<users.length; i++){
 
                     if(dayNum == 0){
-                        email.subject = "Welcome to Curovate " + users[i].firstname + "! Get started with your ACL recovery today by completing your exercises!";
+                        email.subject = users[i].firstname + ", ACL exercises for week 1 of your recovery.";
                     }
                     else if (dayNum == 1){
                         email.subject = users[i].firstname + ", take advantage of Curovate’s ACL recovery tools! Watch video guided exercises, measure your knee extension, and track your progress during your ACL recovery";
                     }
                     else if (dayNum == 2){
-                        email.subject == users[i].firstname + ", join the Curovate family and complete your 6 month ACL recovery journey!";
+                        email.subject = users[i].firstname + ", join the Curovate family and complete your 6 month ACL recovery journey!";
                     }
                     else if (dayNum == 3){
-                        email.subject == users[i].firstname + "! Use these tips and resources to stay engaged with your ACL recovery";
+                        email.subject = users[i].firstname + "! Use these tips and resources to stay engaged with your ACL recovery";
                     }
+
+                    email.to = 'taikunzhang581@gmail.com';
 
                     var body = await mg.messages().send(email);
                 }
