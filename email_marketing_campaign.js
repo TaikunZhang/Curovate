@@ -23,7 +23,7 @@ var messages = [
         subject: '',
         template: 'day1email',
         "o:tracking": 'yes',
-        "o:tag" : ['Day1emailA'], 
+        "o:tag" : ['Day1emailB'], 
     },
     {
         from: 'Curovate <info@curovate.com>',
@@ -152,7 +152,7 @@ async function send_emails(dayNum, start_date, end_date){
                         email.subject = users[i].firstname + "! Use these tips and resources to stay engaged with your ACL recovery";
                     }
 
-                    email.to = 'taikunzhang581@gmail.com';
+                    email.to = users[i].email;
 
                     var body = await mg.messages().send(email);
                 }
