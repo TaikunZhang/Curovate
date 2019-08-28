@@ -152,7 +152,7 @@ async function send_emails(dayNum, start_date, end_date){
                         email.subject = users[i].firstname + "! Use these tips and resources to stay engaged with your ACL recovery";
                     }
 
-                    email.to = users[i].email;
+                    email.to = 'taikunzhang581@gmail.com';
 
                     var body = await mg.messages().send(email);
                 }
