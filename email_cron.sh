@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-touch "home/ubuntu/email_marketing/Curovate/emptyfile"
+node "home/ubuntu/email_marketing/Curovate/email_marketing_campaign.js"
