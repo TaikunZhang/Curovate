@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "Hello" >> emptyfile.txt
+node email_marketing_campaign.js
