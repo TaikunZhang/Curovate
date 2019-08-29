@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "#!/bin/bash" >> /emptyfile.txt
+echo "Hello" >> emptyfile.txt
