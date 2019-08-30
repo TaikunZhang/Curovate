@@ -153,8 +153,10 @@ async function send_emails(dayNum, start_date, end_date){
                     }
 
                     email.to = users.email;
+                    console.log(email.to);
                     try{
                     var body = await mg.messages().send(email);
+                    console.log(body);
                     }
                     catch{
                         console.log(err);
